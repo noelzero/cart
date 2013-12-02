@@ -1,0 +1,34 @@
+<%= provide(:title, 'Home') %>
+<div class="container">
+<div class="row">
+  <% @products.each do |p| %>
+  <div class="col-sm-3 col-md-4">
+    <div class="thumbnail">
+      <img src="<%= p.avatar %>" alt="<%= p.name %> " style="height:160px;width:160px;">
+      <div class="caption">
+        <h3><%= p.name %> </h3>
+        <p><%= p.desc %> </p>
+        <form class='form-inline'role='form'>
+        <input id="qty_<%= p.id %>" type="text" name="qty" />
+        <input id="id_<%= p.id %>"type="hidden" name="id" value="<%= p.id %> "/>
+        <button class="btn btn-primary" role="button" onclick ="add_cart($('#qty_<%= p.id %>').val(),$('#id_<%= p.id %>').val());return false;">Beli</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+</div>
+
+<script type="text/javascript">
+  function add_cart(qty,id)
+  {
+    $.post('cart/add',{id:id,qty:qty},function(data){
+      
+      alert(JSON.stringify(data));
+    });
+    
+    return false;
+  }
+  </script>
+

@@ -1,0 +1,65 @@
+<%= form_for(@product) do |f| %>
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% @product.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :product_id ,"ProductId" %><br />
+    <%= f.text_field :product_id %>
+  </div>
+  <div class="field">
+    <label for="category">Kategori</label><br />
+    <select name="product[category_id]">
+      <% @category.each do|c| %>
+      <option value="<%= c.id %> "><%= c.name %></option>
+      <% end %>
+    </select>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  
+  </div>
+  <div class="field">
+    <%= f.label :meta %><br />
+    <%= f.text_field :meta %>
+  </div>
+ 
+  <div class="field">
+    <%= f.label :slug %><br />
+    <%= f.text_field :slug %>
+  </div>
+ 
+  <div class="field">
+    <%= f.label :desc %><br />
+    <%= f.text_field :desc %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :price %><br />
+    <%= f.text_field :price %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :stock %><br />
+    <%= f.text_field :stock %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :avatar ,"Image" %><br />
+    <%= f.file_field :avatar %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
